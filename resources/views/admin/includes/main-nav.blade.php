@@ -31,10 +31,26 @@
                 </li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="bx bx-data"></i>
+                        <span>{{pxLang('admin.main-nav','data-library.menu')}}</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow waves-effect" >{{pxLang('admin.main-nav','data-library.menu.salary-setup')}}</a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="{{url('admin/data-library/salary/heads')}}">{{pxLang('admin.main-nav','data-library.menu.salary-setup.heads')}}</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="bx bxs-cog"></i>
                         <span>{{pxLang('admin.main-nav','system.core')}}</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="true">
+                    <ul class="sub-menu">
                         <li>
                             <a href="{{url('admin/system/user/user-role')}}">{{pxLang('admin.main-nav','system.core.user_role')}}</a>
                         </li>
