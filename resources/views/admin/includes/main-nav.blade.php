@@ -43,6 +43,9 @@
                                 </li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="{{url('admin/data-library/designation')}}">{{pxLang('admin.main-nav','data-library.menu.designation')}}</a>
+                        </li>
                     </ul>
                 </li>
                 <li>
