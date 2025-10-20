@@ -16,6 +16,10 @@ trait DataLibratyTrait {
                     'name' => 'Lib Designation Crud',
                     'keys' => ['view','store','bulk_update','delete','pdf','excel','edit']
                 ],
+                  [
+                    'name' => 'Lib Leave Crud',
+                    'keys' => ['view','store','bulk_update','delete','pdf','excel','edit']
+                ],
                 [
                     'name' => 'Lib Salary Head Crud',
                     'keys' => ['view','store','bulk_update','delete','pdf','excel','edit']

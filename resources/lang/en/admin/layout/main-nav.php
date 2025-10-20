@@ -10,5 +10,6 @@ return [
     'data-library.menu.salary-setup' => 'Salary Setup',
     'data-library.menu.department' => 'Departments',
     'data-library.menu.designation' => 'Designations',
+    'data-library.menu.leave' => 'Leaves',
     'data-library.menu.salary-setup.heads' => 'Salary Heads',
 ];

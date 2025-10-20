@@ -41,6 +41,9 @@
                         <li>
                             <a href="{{url('admin/data-library/designation')}}">{{pxLang('admin.main-nav','data-library.menu.designation')}}</a>
                         </li>
+                         <li>
+                            <a href="{{url('admin/data-library/leave')}}">{{pxLang('admin.main-nav','data-library.menu.leave')}}</a>
+                        </li>
                         <li>
                             <a href="javascript: void(0);" class="has-arrow waves-effect" >{{pxLang('admin.main-nav','data-library.menu.salary-setup')}}</a>
                             <ul class="sub-menu">
