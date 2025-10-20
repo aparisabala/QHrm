@@ -9,6 +9,10 @@ trait DataLibratyTrait {
             'name' => 'Salary Setup',
             'policies' => [
                 [
+                    'name' => 'Lib Department Crud',
+                    'keys' => ['view','store','bulk_update','delete','pdf','excel','edit']
+                ],
+                [
                     'name' => 'Lib Designation Crud',
                     'keys' => ['view','store','bulk_update','delete','pdf','excel','edit']
                 ],

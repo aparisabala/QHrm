@@ -36,6 +36,12 @@
                     </a>
                     <ul class="sub-menu">
                         <li>
+                            <a href="{{url('admin/data-library/department')}}">{{pxLang('admin.main-nav','data-library.menu.department')}}</a>
+                        </li>
+                        <li>
+                            <a href="{{url('admin/data-library/designation')}}">{{pxLang('admin.main-nav','data-library.menu.designation')}}</a>
+                        </li>
+                        <li>
                             <a href="javascript: void(0);" class="has-arrow waves-effect" >{{pxLang('admin.main-nav','data-library.menu.salary-setup')}}</a>
                             <ul class="sub-menu">
                                 <li>
@@ -43,9 +49,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li>
-                            <a href="{{url('admin/data-library/designation')}}">{{pxLang('admin.main-nav','data-library.menu.designation')}}</a>
-                        </li>
+
                     </ul>
                 </li>
                 <li>

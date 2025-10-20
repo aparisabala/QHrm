@@ -83,6 +83,7 @@ return [
         'admin.system.user.user-role' => 'admin/system/user/user-role/index',
         'admin.system.user.policy' => 'admin/system/user/policy/index',
         'admin.data-library.salary.heads.crud' => 'admin/data-library/salary/heads/crud/index',
-        'admin.data-library.designation.crud' => 'admin/data-library/designation/crud/index'
+        'admin.data-library.designation.crud' => 'admin/data-library/designation/crud/index',
+        'admin.data-library.department.crud' => 'admin/data-library/department/crud/index'
     ]
 ];
