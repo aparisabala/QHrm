@@ -31,6 +31,7 @@ return [
 	"no_change" => "You made no changes",
 	"no_access" => "You do not have access to this content",
 	"no_access_button" => "Go Back Home",
+    "no_resourse" => "Requested resource not found",
 	"page_not_found" => "Item not found Try again",
 	"errors" => [
 		"no_data_title" => "No History Found",

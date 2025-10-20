@@ -115,7 +115,11 @@ $(document).ready(function(){
                 title: table?.action,
                 class: 'text-end',
                 render: function (data, type, row) {
-                    return `<a href="${baseurl}admin/employee/draft/${data.id}/edit" class="btn btn-outline-secondary btn-sm edit" title="Edit">
+                    return `
+                    <a href="${baseurl}admin/employee/draft/crud/update-basic/update/${data.uuid}" class="btn btn-outline-info btn-sm edit" title="Setup">
+                        <i class="fas fa-cog"></i>
+                    </a>
+                    <a href="${baseurl}admin/employee/draft/${data.id}/edit" class="ms-2 btn btn-outline-secondary btn-sm edit" title="Edit">
                         <i class="fas fa-pencil-alt"></i>
                     </a>`;
                 }

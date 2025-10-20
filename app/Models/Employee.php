@@ -10,10 +10,6 @@ class Employee extends Model
 {
     use BaseTrait;
     protected $table = "employees";
-    protected $fillable = [
-        'name',
-        //'serial'
-    ];
     //vpx_attach
     public function depertment()
     {

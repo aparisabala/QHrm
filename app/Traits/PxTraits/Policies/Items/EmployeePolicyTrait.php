@@ -11,6 +11,10 @@ trait EmployeePolicyTrait {
                 [
                     'name' => 'Employee Crud',
                     'keys' => ['view','store','bulk_update','delete','pdf','excel','edit']
+                ],
+                [
+                    'name' => 'Employee Form Update',
+                    'keys' => ['view','store','bulk_update','delete','pdf','excel','edit']
                 ]
             ]
         ];

@@ -28,6 +28,15 @@ return new class extends Migration
             $table->string('reset_code',7)->nullable();
             $table->dateTime('sent_at')->nullable();
             $table->json('user_access')->nullable();
+            $table->string('father_name')->nullable();
+            $table->string('mother_name')->nullable();
+            $table->string('present_address')->nullable();
+            $table->string('permanent_address')->nullable();
+            $table->string('gender')->nullable();
+            $table->date('date_of_birth')->nullable();
+            $table->string('nid')->nullable();
+            $table->string('emergency_contact')->nullable();
+            $table->string('maritual_status')->nullable();
             $table->string('status',7)->default('Draft');
             $table->rememberToken();
             $table->timestamps();
