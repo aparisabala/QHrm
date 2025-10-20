@@ -31,6 +31,20 @@
                 </li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="bx bx-user"></i>
+                        <span>{{pxLang('admin.main-nav','employee.menu')}}</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a href="{{url('admin/employee/draft')}}">{{pxLang('admin.main-nav','employee.menu.draft')}}</a>
+                        </li>
+                        <li>
+                            <a href="#">{{pxLang('admin.main-nav','employee.menu.active')}}</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="bx bx-data"></i>
                         <span>{{pxLang('admin.main-nav','data-library.menu')}}</span>
                     </a>

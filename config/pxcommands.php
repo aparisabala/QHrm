@@ -44,7 +44,8 @@ return [
                     'setup',
                     'reset',
                     'system',
-                    'data-library'
+                    'data-library',
+                    'employee'
                 ]
             ]
         ]
@@ -85,6 +86,7 @@ return [
         'admin.data-library.salary.heads.crud' => 'admin/data-library/salary/heads/crud/index',
         'admin.data-library.designation.crud' => 'admin/data-library/designation/crud/index',
         'admin.data-library.department.crud' => 'admin/data-library/department/crud/index',
-        'admin.data-library.leave.crud' => 'admin/data-library/leave/crud/index'
+        'admin.data-library.leave.crud' => 'admin/data-library/leave/crud/index',
+        'admin.employee.draft.crud' => 'admin/employee/draft/crud/index'
     ]
 ];

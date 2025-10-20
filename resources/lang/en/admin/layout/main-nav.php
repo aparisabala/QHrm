@@ -2,6 +2,9 @@
 
 return [
     'dashboard' => 'Dashboard',
+    'employee.menu' => 'Manage Employee',
+    'employee.menu.draft' => 'Draft Employee',
+    'employee.menu.active' => 'Active Employee',
     'system.core' => 'System Core',
     'system.core.user_role' => 'User Roles',
     'system.core.user' => 'Users',

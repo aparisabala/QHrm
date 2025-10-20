@@ -4,9 +4,9 @@ namespace App\Traits\PxTraits\Policies\Items;
 
 trait DataLibratyTrait {
 
-    public function salarySetupPolicies(){
+    public function dataLibraryPolicy(){
         return [
-            'name' => 'Salary Setup',
+            'name' => 'Data Library Policy',
             'policies' => [
                 [
                     'name' => 'Lib Department Crud',

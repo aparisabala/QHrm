@@ -1,28 +1,28 @@
 <?php
 
-namespace App\Repositories\Admin\System\User\Crud;
+namespace App\Repositories\Admin\Employee\Draft\Crud;
 
-use App\Http\Requests\Admin\System\User\Crud\ValidateUpdateAdminUser;
-use App\Models\AdminUser;
+use App\Http\Requests\Admin\Employee\Draft\Crud\ValidateUpdateEmployee;
+use App\Models\Employee;
 use App\Repositories\BaseRepository;
 use App\Traits\BaseTrait;
 use Carbon\Carbon;
 use DataTables;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\JsonResponse;
-use Webpatser\Uuid\Uuid;
-use Image;
-use Hash;
+use Auth;
 use DB;
-class AdminUserCrudRepository extends BaseRepository implements IAdminUserCrudRepository {
+use Webpatser\Uuid\Uuid;
+use Hash;
+class  EmployeeCrudRepository extends BaseRepository implements IEmployeeCrudRepository {
 
     use BaseTrait;
     public function __construct() {
+        $this->LoadModels(['Employee']);
         $this->sizes =  [
             ['width'=> 400, 'height'=> 400,'com'=> 70],
             ['width'=> 80, 'height'=> 80,'com'=> 10],
         ];
-        $this->baseCondition = [['is_secret','=','no'],['admin_type','=','system_user']];
     }
 
     /**
@@ -34,8 +34,7 @@ class AdminUserCrudRepository extends BaseRepository implements IAdminUserCrudRe
      */
     public function index($request,$id=null) : array
     {
-       $query = AdminUser::query();
-       return $this->getPageDefault(model: $query, id: $id,where: $this->baseCondition);
+       return $this->getPageDefault(model: $this->Employee, id: $id);
     }
 
 
@@ -47,10 +46,10 @@ class AdminUserCrudRepository extends BaseRepository implements IAdminUserCrudRe
      */
     public function list($request) : JsonResponse
     {
-        $model = AdminUser::where($this->baseCondition);
+        $model = Employee::orderBy('id','DESC')->with(['depertment','designation']);
         $this->saveTractAction(
             $this->getTrackData(
-                title: 'AdminUser was viewed by '.$request?->auth?->name.' at '.Carbon::now()->format('d M Y H:i:s A'),
+                title: 'Employee was viewed by '.$request?->auth?->name.' at '.Carbon::now()->format('d M Y H:i:s A'),
                 request: $request,
                 onlyTitle: true
             )
@@ -64,13 +63,13 @@ class AdminUserCrudRepository extends BaseRepository implements IAdminUserCrudRe
             return  "<img src='$image'  class='img-fluid'/>";
         })
         ->editColumn('status', function($item) {
-            return  ($item?->status == 'Active') ? "<span class='badge bg-success'> Active </span>" : "<span class='badge bg-danger'> Disabled </span>";
+            return  ($item?->status == 'Active') ? "<span class='badge bg-success'> Active </span>" : "<span class='badge bg-danger'> Draft </span>";
         })
         ->escapeColumns([])
         ->make(true);
     }
 
-     /**
+    /**
      * Store resource
      *
      * @param Request  $request
@@ -80,14 +79,15 @@ class AdminUserCrudRepository extends BaseRepository implements IAdminUserCrudRe
     {
         DB::beginTransaction();
         try {
-            $m = new AdminUser;
+            $m = new  Employee;
             $m->uuid = (string)Uuid::generate(4);
             $m->name = $request->name;
             $m->mobile_number = $request->mobile_number;
             $m->email = $request->email;
-            $m->admin_type = $request->admin_type;
+            $m->lib_department_id = $request->lib_department_id;
+            $m->lib_designation_id = $request->lib_designation_id;
+            $m->email = $request->email;
             $m->password = Hash::make('123456789');
-            $m->user_access = $request->user_access;
             $path = imagePaths()['dyn_image'];
             $image = $request->file('image');
             if ($request->hasFile('image')) {
@@ -103,12 +103,12 @@ class AdminUserCrudRepository extends BaseRepository implements IAdminUserCrudRe
             }
             $m->save();
             $response['extraData'] = ['inflate' => pxLang($request->lang,'','common.action_success') ];
-            $this->saveTractAction($this->getTrackData(title: "AdminUser was created by ".$request?->auth?->name,request: $request));
+            $this->saveTractAction($this->getTrackData(title: "Employee was created by ".$request?->auth?->name,request: $request));
             DB::commit();
             return $this->response(['type' => 'success', 'data' => $response]);
         } catch (\Exception $e) {
             DB::rollback();
-            $this->saveError($this->getSystemError(['name' => 'AdminUser_store_error']), $e);
+            $this->saveError($this->getSystemError(['name' => 'Employee_store_error']), $e);
             return $this->response(['type' => 'noUpdate', 'title' => pxLang($request->lang,'','common.server_wrong')]);
         }
     }
@@ -122,7 +122,7 @@ class AdminUserCrudRepository extends BaseRepository implements IAdminUserCrudRe
      */
     public function update($request,$id) : JsonResponse
     {
-        $row = AdminUser::find($id);
+        $row = Employee::find($id);
         if(empty($row)){
             return  $this->response(['type' => 'noUpdate', 'title' =>  '<span class="text-danger">'.pxLang($request->lang,'','common.no_resourse').'</span>']);
         }
@@ -130,8 +130,8 @@ class AdminUserCrudRepository extends BaseRepository implements IAdminUserCrudRe
         $row->name = $request->name;
         $row->mobile_number = $request->mobile_number;
         $row->email = $request->email;
-        $row->status = $request->status;
-        $row->user_access = $request->user_access;
+        $row->lib_department_id = $request->lib_department_id;
+        $row->lib_designation_id = $request->lib_designation_id;
         $path = imagePaths()['dyn_image'];
         $image = $request->file('image');
         if ($request->hasFile('image')) {
@@ -152,27 +152,25 @@ class AdminUserCrudRepository extends BaseRepository implements IAdminUserCrudRe
             $row->extension = $extension;
         }
         if($row->isDirty()){
-            $validator = Validator::make($request->all(), (new ValidateUpdateAdminUser())->rules($request,$row));
+            $validator = Validator::make($request->all(), (new ValidateUpdateEmployee())->rules($request,$row));
             if ($validator->fails()) {
                 return $this->response(['type' => 'validation','errors' => $validator->errors()]);
             }
             DB::beginTransaction();
             try {
-                $row->update($request->all());
+                $row->save();
                 $data['extraData'] = ["inflate" =>  pxLang($request->lang,'','common.action_success')];
-                $this->saveTractAction($this->getTrackData(title: " AdminUser  ".$row?->name.' was updated by '.$request?->auth?->name,request: $request, row: $rowRef, type: 'to'));
+                $this->saveTractAction($this->getTrackData(title: " Employee ".$row?->name.' was updated by '.$request?->auth?->name,request: $request, row: $rowRef, type: 'to'));
                 DB::commit();
                 return $this->response(['type' => 'success','data' => $data]);
             } catch (\Exception $e) {
-                DB::rollback();
-                $this->saveError($this->getSystemError(['name'=>'LibCountry_update_error']), $e);
+                $this->saveError($this->getSystemError(['name'=>'Employee_update_error']), $e);
                 return $this->response(["type"=>"wrong","lang"=>"server_wrong"]);
             }
         } else {
             return $this->response(['type' => 'noUpdate', 'title' =>  '<span class="text-success">'.pxLang($request->lang,'','common.no_change').'</span>']);
         }
     }
-
 
     /**
      *  Bulk update list resource
@@ -182,7 +180,7 @@ class AdminUserCrudRepository extends BaseRepository implements IAdminUserCrudRe
      */
     public function updateList($request) : JsonResponse
     {
-        $i = AdminUser::whereIn('id',$request->ids)->select(['id','name'])->get();;
+        $i = Employee::whereIn('id',$request->ids)->select(['id','name'])->get();;
         $dirty = [];
         if (count($i) > 0) {
             foreach ($i as $key => $value) {
@@ -200,12 +198,12 @@ class AdminUserCrudRepository extends BaseRepository implements IAdminUserCrudRe
                     $data['extraData'] = [
                         "inflate" => pxLang($request->lang,'','common.action_update_success')
                     ];
-                    $this->saveTractAction($this->getTrackData(title: "AdminUser list was updated by ".$request?->auth?->name, request: $request));
+                    $this->saveTractAction($this->getTrackData(title: "Employee list was updated by ".$request?->auth?->name, request: $request));
                     DB::commit();
                     return $this->response(['type' => 'success','data' => $data]);
                 } catch (\Exception $e) {
                     DB::rollback();
-                    $this->saveError($this->getSystemError(['name' => 'AdminUser_bulk_update_error']), $e);
+                    $this->saveError($this->getSystemError(['name' => 'Employee_bulk_update_error']), $e);
                     return $this->response(['type' => 'wrong', 'lang' => 'server_wrong']);
                 }
             } else {
@@ -226,7 +224,7 @@ class AdminUserCrudRepository extends BaseRepository implements IAdminUserCrudRe
     public function deleteList($request) : JsonResponse
     {
         $errors = [];
-        $i = AdminUser::whereIn('id',$request->ids)->select(['id'])->get();
+        $i = Employee::whereIn('id',$request->ids)->select(['id'])->get();
         if (count($i) > 0) {
             // $errors = $this->checkInUse([
             //     "rows" => $i,
@@ -255,16 +253,17 @@ class AdminUserCrudRepository extends BaseRepository implements IAdminUserCrudRe
                     "inflate" => pxLang($request->lang,'','common.action_delete_success'),
                     "redirect" => null
                 ];
-                $this->saveTractAction($this->getTrackData(title: "AdminUser list was deleted by ".$request?->auth?->name, request: $request));
+                $this->saveTractAction($this->getTrackData(title: "Employee list was deleted by ".$request?->auth?->name, request: $request));
                 DB::commit();
                 return $this->response(['type' => 'success',"data"=>$data]);
             } catch (\Exception $e) {
                 DB::rollback();
-                $this->saveError($this->getSystemError(['name' => 'AdminUser_store_error']), $e);
+                $this->saveError($this->getSystemError(['name' => 'Employee_store_error']), $e);
                 return $this->response(['type' => 'wrong', 'lang' => 'server_wrong']);
             }
         } else {
             return $this->response(['type' => 'noUpdate', 'title' =>  pxLang($request->lang,'','common.no_data_selected')]);
         }
     }
+
 }
