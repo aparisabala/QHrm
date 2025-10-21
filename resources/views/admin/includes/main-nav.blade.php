@@ -64,6 +64,9 @@
                                 <li>
                                     <a href="{{url('admin/data-library/salary/heads')}}">{{pxLang('admin.main-nav','data-library.menu.salary-setup.heads')}}</a>
                                 </li>
+                                <li>
+                                    <a href="{{url('admin/data-library/salary/group')}}">{{pxLang('admin.main-nav','data-library.menu.salary-setup.groups')}}</a>
+                                </li>
                             </ul>
                         </li>
                         <li>

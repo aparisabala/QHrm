@@ -67,6 +67,9 @@ table.dataTable th,
 table.dataTable td {
     border: none !important;
 }
+.cursor-pointer {
+   cursor: pointer;
+}
 
 table.dataTable {
     width: 100%;

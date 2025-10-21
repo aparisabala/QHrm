@@ -98,6 +98,7 @@ return [
         'admin.data-library.dgree.crud' => 'admin/data-library/dgree/crud/index',
         'admin.employee.draft.crud.leave.crud' => 'admin/employee/draft/crud/leave/crud/index',
         'admin.employee.draft.crud.bank-details.form.update' => 'admin/employee/draft/crud/bank-details/form/update/index',
-        'admin.data-library.banks.crud' => 'admin/data-library/banks/crud/index'
+        'admin.data-library.banks.crud' => 'admin/data-library/banks/crud/index',
+        'admin.data-library.salary.group.crud' => 'admin/data-library/salary/group/crud/index'
     ]
 ];

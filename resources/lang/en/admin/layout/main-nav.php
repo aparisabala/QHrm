@@ -18,4 +18,5 @@ return [
     'data-library.menu.leave' => 'Leaves',
     'data-library.menu.bank' => 'Banks',
     'data-library.menu.salary-setup.heads' => 'Salary Heads',
+    'data-library.menu.salary-setup.groups' => 'Salary Groups',
 ];

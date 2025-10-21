@@ -32,6 +32,10 @@ trait DataLibratyTrait {
                     'name' => 'Lib Salary Head Crud',
                     'keys' => ['view','store','bulk_update','delete','pdf','excel','edit']
                 ],
+                 [
+                    'name' => 'Lib Salary Group Crud',
+                    'keys' => ['view','store','bulk_update','delete','pdf','excel','edit']
+                ],
                 [
                     'name' => 'Lib Bank Crud',
                     'keys' => ['view','store','bulk_update','delete','pdf','excel','edit']
