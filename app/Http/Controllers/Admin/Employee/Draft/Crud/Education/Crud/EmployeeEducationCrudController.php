@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Employee\Draft\Crud\Education\Crud;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Employee\Draft\Crud\Education\Crud\ValidateStoreEmployeeEducation;
 use App\Models\Employee;
+use App\Models\LibBoard;
 use App\Repositories\Admin\Employee\Draft\Crud\Education\Crud\IEmployeeEducationCrudRepository;
 use App\Traits\BaseTrait;
 use Illuminate\Contracts\View\View;
@@ -20,7 +21,7 @@ class EmployeeEducationCrudController  extends Controller {
             return $next($request);
         });
         $this->dgrees = [];
-        $this->boards = [];
+        $this->boards = LibBoard::select(['id','name'])->get();
 
     }
 

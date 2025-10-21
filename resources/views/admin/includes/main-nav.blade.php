@@ -55,7 +55,7 @@
                         <li>
                             <a href="{{url('admin/data-library/designation')}}">{{pxLang('admin.main-nav','data-library.menu.designation')}}</a>
                         </li>
-                         <li>
+                        <li>
                             <a href="{{url('admin/data-library/leave')}}">{{pxLang('admin.main-nav','data-library.menu.leave')}}</a>
                         </li>
                         <li>
@@ -66,7 +66,9 @@
                                 </li>
                             </ul>
                         </li>
-
+                        <li>
+                            <a href="{{url('admin/data-library/board')}}">{{pxLang('admin.main-nav','data-library.menu.board')}}</a>
+                        </li>
                     </ul>
                 </li>
                 <li>
