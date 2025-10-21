@@ -14,11 +14,15 @@ trait EmployeePolicyTrait {
                 ],
                 [
                     'name' => 'Employee Form Update',
-                    'keys' => ['view','store','bulk_update','delete','pdf','excel','edit']
+                    'keys' => ['view','update']
                 ],
                 [
                     'name' => 'Employee Education Crud',
                     'keys' => ['view','store','bulk_update','delete','pdf','excel','edit']
+                ],
+                [
+                    'name' => 'Employee Bank Details Update',
+                    'keys' => ['view','update']
                 ],
                 [
                     'name' => 'Employee Leave Crud',

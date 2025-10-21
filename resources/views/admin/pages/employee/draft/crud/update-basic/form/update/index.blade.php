@@ -20,7 +20,7 @@
                                 </div>
                             </div>
                             <div class="mt-4 p-3">
-                                @can('employee_form_update_store')
+                                @can('employee_form_update_update')
                                     @include('admin.pages.employee.draft.crud.update-basic.form.update.fragments._update')
                                 @else
                                     @include('common.view.fragments.-item-403')

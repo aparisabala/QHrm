@@ -38,6 +38,10 @@ return new class extends Migration
             $table->string('emergency_contact')->nullable();
             $table->string('maritual_status')->nullable();
             $table->string('status',7)->default('Draft');
+            $table->string('bank_name')->nullable();
+            $table->string('branch')->nullable();
+            $table->string('ac_name')->nullable();
+            $table->string('ac_number')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

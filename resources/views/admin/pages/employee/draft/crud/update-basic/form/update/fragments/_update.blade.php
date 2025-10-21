@@ -8,27 +8,27 @@
                             <div class="form-group text-left mb-3">
                                 <label class="form-label"><b>{{pxLang($data['lang'],'fields.father_name')}}</b> <span id="father_name_error"></span></label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="father_name" id="father_name" value="{{$data['item']?->father_name}}">
+                                    <input type="text" class="form-control" name="father_name" id="father_name" value="{{$data['employee']?->father_name}}">
                                 </div>
                             </div>
                             <div class="form-group text-left mb-3">
                                 <label class="form-label"><b>{{pxLang($data['lang'],'fields.mother_name')}}</b> <span id="mother_name_error"></span></label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="mother_name" id="mother_name" value="{{$data['item']?->mother_name}}">
+                                    <input type="text" class="form-control" name="mother_name" id="mother_name" value="{{$data['employee']?->mother_name}}">
                                 </div>
                             </div>
 
                             <div class="form-group text-left mb-3">
                                 <label class="form-label"><b>{{pxLang($data['lang'],'fields.present_address')}}</b> <span id="present_address_error"></span></label>
                                 <div class="input-group">
-                                    <textarea class="form-control" name="present_address" id="present_address">{{$data['item']?->present_address}}</textarea>
+                                    <textarea class="form-control" name="present_address" id="present_address">{{$data['employee']?->present_address}}</textarea>
                                 </div>
                             </div>
 
                             <div class="form-group text-left mb-3">
                                 <label class="form-label"><b>{{pxLang($data['lang'],'fields.permanent_address')}}</b> <span id="permanent_address_error"></span></label>
                                 <div class="input-group">
-                                    <textarea class="form-control" name="permanent_address" id="permanent_address">{{$data['item']?->permanent_address}}</textarea>
+                                    <textarea class="form-control" name="permanent_address" id="permanent_address">{{$data['employee']?->permanent_address}}</textarea>
                                 </div>
                             </div>
 
@@ -37,9 +37,9 @@
                                 <div class="input-group">
                                     <select class="form-control" name="gender" id="gender">
                                         <option value="">-- Select --</option>
-                                        <option value="Male" {{ $data['item']?->gender == 'Male' ? 'selected' : '' }}>Male</option>
-                                        <option value="Female" {{ $data['item']?->gender == 'Female' ? 'selected' : '' }}>Female</option>
-                                        <option value="Other" {{ $data['item']?->gender == 'Other' ? 'selected' : '' }}>Other</option>
+                                        <option value="Male" {{ $data['employee']?->gender == 'Male' ? 'selected' : '' }}>Male</option>
+                                        <option value="Female" {{ $data['employee']?->gender == 'Female' ? 'selected' : '' }}>Female</option>
+                                        <option value="Other" {{ $data['employee']?->gender == 'Other' ? 'selected' : '' }}>Other</option>
                                     </select>
                                 </div>
                             </div>
@@ -47,21 +47,21 @@
                             <div class="form-group text-left mb-3">
                                 <label class="form-label"><b>{{pxLang($data['lang'],'fields.date_of_birth')}}</b> <span id="date_of_birth_error"></span></label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control dp" name="date_of_birth" id="date_of_birth" value="{{( $data['item']?->date_of_birth == null) ? '' : \Carbon\Carbon::parse($data['item']?->date_of_birth)->format('Y-m-d')}}">
+                                    <input type="text" class="form-control dp" name="date_of_birth" id="date_of_birth" value="{{( $data['employee']?->date_of_birth == null) ? '' : \Carbon\Carbon::parse($data['employee']?->date_of_birth)->format('Y-m-d')}}">
                                 </div>
                             </div>
 
                             <div class="form-group text-left mb-3">
                                 <label class="form-label"><b>{{pxLang($data['lang'],'fields.nid')}}</b> <span id="nid_error"></span></label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="nid" id="nid" value="{{$data['item']?->nid}}">
+                                    <input type="text" class="form-control" name="nid" id="nid" value="{{$data['employee']?->nid}}">
                                 </div>
                             </div>
 
                             <div class="form-group text-left mb-3">
                                 <label class="form-label"><b>{{pxLang($data['lang'],'fields.emergency_contact')}}</b> <span id="emergency_contact_error"></span></label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="emergency_contact" id="emergency_contact" value="{{$data['item']?->emergency_contact}}">
+                                    <input type="text" class="form-control" name="emergency_contact" id="emergency_contact" value="{{$data['employee']?->emergency_contact}}">
                                 </div>
                             </div>
 
@@ -70,10 +70,10 @@
                                 <div class="input-group">
                                     <select class="form-control" name="maritual_status" id="maritual_status">
                                         <option value="">-- Select --</option>
-                                        <option value="Single" {{ $data['item']?->maritual_status == 'Single' ? 'selected' : '' }}>Single</option>
-                                        <option value="Married" {{ $data['item']?->maritual_status == 'Married' ? 'selected' : '' }}>Married</option>
-                                        <option value="Divorced" {{ $data['item']?->maritual_status == 'Divorced' ? 'selected' : '' }}>Divorced</option>
-                                        <option value="Widowed" {{ $data['item']?->maritual_status == 'Widowed' ? 'selected' : '' }}>Widowed</option>
+                                        <option value="Single" {{ $data['employee']?->maritual_status == 'Single' ? 'selected' : '' }}>Single</option>
+                                        <option value="Married" {{ $data['employee']?->maritual_status == 'Married' ? 'selected' : '' }}>Married</option>
+                                        <option value="Divorced" {{ $data['employee']?->maritual_status == 'Divorced' ? 'selected' : '' }}>Divorced</option>
+                                        <option value="Widowed" {{ $data['employee']?->maritual_status == 'Widowed' ? 'selected' : '' }}>Widowed</option>
                                     </select>
                                 </div>
                             </div>

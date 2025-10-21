@@ -96,6 +96,7 @@ return [
         'admin.employee.draft.crud.education.crud' => 'admin/employee/draft/crud/education/crud/index',
         'admin.data-library.board.crud' => 'admin/data-library/board/crud/index',
         'admin.data-library.dgree.crud' => 'admin/data-library/dgree/crud/index',
-        'admin.employee.draft.crud.leave.crud' => 'admin/employee/draft/crud/leave/crud/index'
+        'admin.employee.draft.crud.leave.crud' => 'admin/employee/draft/crud/leave/crud/index',
+        'admin.employee.draft.crud.bank-details.form.update' => 'admin/employee/draft/crud/bank-details/form/update/index'
     ]
 ];
