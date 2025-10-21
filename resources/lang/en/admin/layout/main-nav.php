@@ -16,5 +16,6 @@ return [
     'data-library.menu.board' => 'Education Board',
     'data-library.menu.dgree' => 'Education Dgree',
     'data-library.menu.leave' => 'Leaves',
+    'data-library.menu.bank' => 'Banks',
     'data-library.menu.salary-setup.heads' => 'Salary Heads',
 ];

@@ -69,8 +69,11 @@
                         <li>
                             <a href="{{url('admin/data-library/board')}}">{{pxLang('admin.main-nav','data-library.menu.board')}}</a>
                         </li>
-                         <li>
+                        <li>
                             <a href="{{url('admin/data-library/dgree')}}">{{pxLang('admin.main-nav','data-library.menu.dgree')}}</a>
+                        </li>
+                        <li>
+                            <a href="{{url('admin/data-library/banks')}}">{{pxLang('admin.main-nav','data-library.menu.bank')}}</a>
                         </li>
                     </ul>
                 </li>

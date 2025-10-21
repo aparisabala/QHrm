@@ -31,7 +31,12 @@
                                                             <div class="form-group text-left mb-3">
                                                                 <label class="form-label"> <b>{{pxLang($data['lang'],'fields.bank_name')}}</b> <em class="required">*</em> <span id="bank_name_error"></span></label>
                                                                 <div class="input-group">
-                                                                    <input type="text" class="form-control" name="bank_name" id="bank_name" value="{{$data['employee']?->bank_name}}">
+                                                                    <select  class="form-control" name="bank_name" id="bank_name">
+                                                                        <option value=""> -- {{pxLang($data['lang'],'','common.text.option_select')}} -- </option>
+                                                                        @foreach ($data['banks'] as $item)
+                                                                            <option {{($data['employee']?->bank_name == $item?->name) ? 'selected':''}}>{{$item?->name}}</option>
+                                                                        @endforeach
+                                                                    </select>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group text-left mb-3">
