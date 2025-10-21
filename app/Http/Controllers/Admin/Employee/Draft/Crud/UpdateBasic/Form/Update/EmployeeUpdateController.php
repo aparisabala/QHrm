@@ -31,7 +31,7 @@ class EmployeeUpdateController extends Controller {
     {
         $data = $this->iEmployeeUpdateRepo->index($request);
         $data['lang'] = $this->lang;
-        $data['item'] = Employee::where([['uuid','=',$request->uuid]])->first();
+        $data['employee'] = Employee::where([['uuid','=',$request->uuid]])->first();
         return view('admin.pages.employee.draft.crud.update-basic.form.update.index')->with('data',$data);
     }
 

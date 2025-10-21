@@ -5,13 +5,14 @@ return [
     'add' => '',
     'update' => '',
     'breadCum' => [
-        'title' => 'Update Employee ',
+        'title' => 'Update Basic Info ',
         'b1' => 'Employee',
         'b2' => 'Manage',
         'b3' => 'Update'
     ],
     'nav' => [
-        'item1' => 'Basic Info'
+        'item1' => 'Basic Info',
+        'item2' => 'Education'
     ],
     'fields' => [
         'father_name' => 'Father Name',

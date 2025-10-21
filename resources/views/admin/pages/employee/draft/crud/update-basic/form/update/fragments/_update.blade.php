@@ -1,5 +1,5 @@
  <form id="frmEmployeeUpdate" autocomplete="off">
-        <input type="hidden" value="{{$data['item']?->id}}" name="id" />
+        <input type="hidden" value="{{$data['employee']?->id}}" name="id" />
         <div class="row">
             <div class="col-md-12">
                 <div class="row">
