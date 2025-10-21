@@ -73,6 +73,14 @@ $(document).ready(function(){
     if ($("#dtLibSalaryGroup").length > 0) {
         const {pageLang={}} = PX?.config;
         const {table={}} = pageLang;
+        let trigRefreshItem = {
+            body: {},
+            modalCallback: 'refreshSalaryItem',
+            element: 'refreshSalaryItem',
+            script: 'admin/data-library/salary/group/crud/refresh-salary-item/display',
+            title: 'Refresh Salary Group',
+            globLoader: false
+        };
         let col_draft = [
             {
                 data: 'id',
@@ -102,7 +110,16 @@ $(document).ready(function(){
                 title: table?.action,
                 class: 'text-end',
                 render: function (data, type, row) {
-                    return `<a href="${baseurl}admin/data-library/salary/group/${data.id}/edit" class="btn btn-outline-secondary btn-sm edit" title="Edit">
+                    trigRefreshItem = {
+                        ...trigRefreshItem,
+                        body: {id: data?.id},
+                        title: `Upate ${data?.name} Items`
+                    };
+                    return `
+                     <span data-bs-toggle='modal' data-bs-target='.editmodal' data-edit-prop='${JSON.stringify(trigRefreshItem)}' href="${baseurl}admin/data-library/salary/group/${data.id}/edit" class="btn btn-outline-secondary btn-sm" title="Refresh">
+                        <i class="fas fa-refresh"></i>
+                    </span>
+                    <a href="${baseurl}admin/data-library/salary/group/${data.id}/edit" class="btn btn-outline-secondary btn-sm edit" title="Edit">
                         <i class="fas fa-pencil-alt"></i>
                     </a>`;
                 }
