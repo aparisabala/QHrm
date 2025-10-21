@@ -6,7 +6,7 @@
     @endcan
     @if(count($data['items']) > 0)
         @can('employee_education_crud_bulk_update')
-            {{-- <button class="btn btn-success btn-soft-success waves-effect waves-light d-flex justify-items-center align-items-center  fw-bold  me-2 updateAllEmployeeEducation"><span class="bx bx-save"></span> <span class="d-none d-md-block ms-1"> {{pxLang($data['lang'],'','common.btns.crud_update')}}   </span> </button> --}}
+            <button class="btn btn-success btn-soft-success waves-effect waves-light d-flex justify-items-center align-items-center  fw-bold  me-2 updateAllEmployeeEducation"><span class="bx bx-save"></span> <span class="d-none d-md-block ms-1"> {{pxLang($data['lang'],'','common.btns.crud_update')}}   </span> </button>
         @endcan
         @can('employee_education_crud_delete')
             <button class="btn btn-danger btn-soft-danger waves-effect waves-light waves-light d-flex justify-items-center align-items-center  fw-bold me-2 deleteAllEmployeeEducation"><span class="bx bx-trash"></span> <span class="d-none d-md-block ms-1">  {{pxLang($data['lang'],'','common.btns.crud_delete')}}   </span> </button>

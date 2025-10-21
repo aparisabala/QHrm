@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Repositories\Admin\Employee\Draft\Crud\Education\Crud;
+namespace App\Repositories\Admin\DataLibrary\Dgree\Crud;
 
-use App\Http\Requests\Admin\Employee\Draft\Crud\Education\Crud\ValidateUpdateEmployeeEducation;
-use App\Models\EmployeeEducation;
+use App\Http\Requests\Admin\DataLibrary\Dgree\Crud\ValidateUpdateLibDgree;
+use App\Models\LibDgree;
 use App\Repositories\BaseRepository;
 use App\Traits\BaseTrait;
 use Carbon\Carbon;
@@ -12,11 +12,11 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\JsonResponse;
 use Auth;
 use DB;
-class  EmployeeEducationCrudRepository extends BaseRepository implements IEmployeeEducationCrudRepository {
+class  LibDgreeCrudRepository extends BaseRepository implements ILibDgreeCrudRepository {
 
     use BaseTrait;
     public function __construct() {
-        $this->LoadModels(['EmployeeEducation']);
+        $this->LoadModels(['LibDgree']);
     }
 
     /**
@@ -28,7 +28,7 @@ class  EmployeeEducationCrudRepository extends BaseRepository implements IEmploy
      */
     public function index($request,$id=null) : array
     {
-       return $this->getPageDefault(model: $this->EmployeeEducation, id: $id);
+       return $this->getPageDefault(model: $this->LibDgree, id: $id);
     }
 
 
@@ -40,10 +40,10 @@ class  EmployeeEducationCrudRepository extends BaseRepository implements IEmploy
      */
     public function list($request) : JsonResponse
     {
-        $model = EmployeeEducation::query();
+        $model = LibDgree::query();
         $this->saveTractAction(
             $this->getTrackData(
-                title: 'EmployeeEducation was viewed by '.$request?->auth?->name.' at '.Carbon::now()->format('d M Y H:i:s A'),
+                title: 'LibDgree was viewed by '.$request?->auth?->name.' at '.Carbon::now()->format('d M Y H:i:s A'),
                 request: $request,
                 onlyTitle: true
             )
@@ -66,17 +66,17 @@ class  EmployeeEducationCrudRepository extends BaseRepository implements IEmploy
     {
         DB::beginTransaction();
         try {
-            EmployeeEducation::create([
+            LibDgree::create([
                 ...$request->all(),
-                'serial' => $this->facSrWc($this->EmployeeEducation,['where' => [[['employee_id','=',$request->employee_id]]]])
+                //'serial' => $this->facSrWc($this->LibDgree)
             ]);
             $response['extraData'] = ['inflate' => pxLang($request->lang,'','common.action_success') ];
-            $this->saveTractAction($this->getTrackData(title: "EmployeeEducation was created by ".$request?->auth?->name,request: $request));
+            $this->saveTractAction($this->getTrackData(title: "LibDgree was created by ".$request?->auth?->name,request: $request));
             DB::commit();
             return $this->response(['type' => 'success', 'data' => $response]);
         } catch (\Exception $e) {
             DB::rollback();
-            $this->saveError($this->getSystemError(['name' => 'EmployeeEducation_store_error']), $e);
+            $this->saveError($this->getSystemError(['name' => 'LibDgree_store_error']), $e);
             return $this->response(['type' => 'noUpdate', 'title' => pxLang($request->lang,'','common.server_wrong')]);
         }
     }
@@ -90,14 +90,14 @@ class  EmployeeEducationCrudRepository extends BaseRepository implements IEmploy
      */
     public function update($request,$id) : JsonResponse
     {
-        $row = EmployeeEducation::find($id);
+        $row = LibDgree::find($id);
         if(empty($row)){
             return  $this->response(['type' => 'noUpdate', 'title' =>  '<span class="text-danger">'.pxLang($request->lang,'','common.no_resourse').'</span>']);
         }
         $rowRef = [...$row->toArray()];
         $row->fill($request->all());
         if($row->isDirty()){
-            $validator = Validator::make($request->all(), (new ValidateUpdateEmployeeEducation())->rules($request,$row));
+            $validator = Validator::make($request->all(), (new ValidateUpdateLibDgree())->rules($request,$row));
             if ($validator->fails()) {
                 return $this->response(['type' => 'validation','errors' => $validator->errors()]);
             }
@@ -105,11 +105,11 @@ class  EmployeeEducationCrudRepository extends BaseRepository implements IEmploy
             try {
                 $row->save();
                 $data['extraData'] = ["inflate" =>  pxLang($request->lang,'','common.action_success')];
-                $this->saveTractAction($this->getTrackData(title: " EmployeeEducation ".$row?->name.' was updated by '.$request?->auth?->name,request: $request, row: $rowRef, type: 'to'));
+                $this->saveTractAction($this->getTrackData(title: " LibDgree ".$row?->name.' was updated by '.$request?->auth?->name,request: $request, row: $rowRef, type: 'to'));
                 DB::commit();
                 return $this->response(['type' => 'success','data' => $data]);
             } catch (\Exception $e) {
-                $this->saveError($this->getSystemError(['name'=>'EmployeeEducation_update_error']), $e);
+                $this->saveError($this->getSystemError(['name'=>'LibDgree_update_error']), $e);
                 return $this->response(["type"=>"wrong","lang"=>"server_wrong"]);
             }
         } else {
@@ -125,11 +125,11 @@ class  EmployeeEducationCrudRepository extends BaseRepository implements IEmploy
      */
     public function updateList($request) : JsonResponse
     {
-        $i = EmployeeEducation::whereIn('id',$request->ids)->select(['*'])->get();;
+        $i = LibDgree::whereIn('id',$request->ids)->select(['id','name'])->get();;
         $dirty = [];
         if (count($i) > 0) {
             foreach ($i as $key => $value) {
-                $value->serial = $request->serial[$value->id];
+                //$value->serial = $request->serial[$value->id];
                 if ($value->isDirty()) {
                     $dirty[$key] = "yes";
                 }
@@ -143,12 +143,12 @@ class  EmployeeEducationCrudRepository extends BaseRepository implements IEmploy
                     $data['extraData'] = [
                         "inflate" => pxLang($request->lang,'','common.action_update_success')
                     ];
-                    $this->saveTractAction($this->getTrackData(title: "EmployeeEducation list was updated by ".$request?->auth?->name, request: $request));
+                    $this->saveTractAction($this->getTrackData(title: "LibDgree list was updated by ".$request?->auth?->name, request: $request));
                     DB::commit();
                     return $this->response(['type' => 'success','data' => $data]);
                 } catch (\Exception $e) {
                     DB::rollback();
-                    $this->saveError($this->getSystemError(['name' => 'EmployeeEducation_bulk_update_error']), $e);
+                    $this->saveError($this->getSystemError(['name' => 'LibDgree_bulk_update_error']), $e);
                     return $this->response(['type' => 'wrong', 'lang' => 'server_wrong']);
                 }
             } else {
@@ -169,7 +169,7 @@ class  EmployeeEducationCrudRepository extends BaseRepository implements IEmploy
     public function deleteList($request) : JsonResponse
     {
         $errors = [];
-        $i = EmployeeEducation::whereIn('id',$request->ids)->select(['id'])->get();
+        $i = LibDgree::whereIn('id',$request->ids)->select(['id'])->get();
         if (count($i) > 0) {
             // $errors = $this->checkInUse([
             //     "rows" => $i,
@@ -192,12 +192,12 @@ class  EmployeeEducationCrudRepository extends BaseRepository implements IEmploy
                     "inflate" => pxLang($request->lang,'','common.action_delete_success'),
                     "redirect" => null
                 ];
-                $this->saveTractAction($this->getTrackData(title: "EmployeeEducation list was deleted by ".$request?->auth?->name, request: $request));
+                $this->saveTractAction($this->getTrackData(title: "LibDgree list was deleted by ".$request?->auth?->name, request: $request));
                 DB::commit();
                 return $this->response(['type' => 'success',"data"=>$data]);
             } catch (\Exception $e) {
                 DB::rollback();
-                $this->saveError($this->getSystemError(['name' => 'EmployeeEducation_store_error']), $e);
+                $this->saveError($this->getSystemError(['name' => 'LibDgree_store_error']), $e);
                 return $this->response(['type' => 'wrong', 'lang' => 'server_wrong']);
             }
         } else {

@@ -2,34 +2,24 @@
 @section('page')
     <div class="row">
         <div class="col-md-12">
-            @can('employee_education_crud_view')
-                @if($data['item']  != null || $data['type'] != "edit" && $data['employee'] != null)
+            @can('lib_dgree_crud_view')
+                @if($data['item'] != null || $data['type'] != "edit")
                     <div class="">
-                        @include('admin.pages.employee.draft.crud.education.crud.fragments._breadcum')
-                        <div id="pageSideBar" class="pageSideBar">
-                        <a href="javascript:void(0)" class="closebtn closeNav">×</a>
-                        @include('admin.pages.employee.draft.crud.navs.nav')
-                    </div>
+                        @include('admin.pages.data-library.dgree.crud.fragments._breadcum')
+                        
                         <div class="page-block-body">
                             @if($data['type'] == "add")
-                                @include('admin.pages.employee.draft.crud.education.crud.fragments._actions')
+                                @include('admin.pages.data-library.dgree.crud.fragments._actions')
                                 <div class="card rounded page-block">
-                                    <div class="d-none d-md-block mb-4">
-                                    @include('admin.pages.employee.draft.crud.navs.nav')
-                                </div>
-                                <div class="d-block d-md-none">
-                                    <div class="d-flex flex-row justify-content-end align-items-center p-2">
-                                        <span class="fs-18 openNav" style="cursor:pointer">&#9776;</span>
-                                    </div>
-                                </div>
+                                    
                                     <div id="defaultPage" class="table-list pages">
                                         <div class="mt-2 p-2 p-md-4">
                                             <input type="hidden" id="page-lang" value="{{ json_encode(Lang::get(config('pxcommands.language')[$data['lang']])) }}" />
                                             @if(count($data['items']) > 0)
                                                 @include('common.view.fragments._show-selected')
-                                                @include('common.view.fragments._pdf-layout',['docTitle' => 'EmployeeEducation List'])
+                                                @include('common.view.fragments._pdf-layout',['docTitle' => 'LibDgree List'])
                                                 <div class="table-responsive">
-                                                    <table class="table table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed" id="dtEmployeeEducation"></table>
+                                                    <table class="table table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed" id="dtLibDgree"></table>
                                                 </div>
                                             @else
                                                 @include('common.view.fragments._no-list-data')
@@ -37,14 +27,14 @@
                                         </div>
                                     </div>
                                     <div id="addPage" class="d-none pages">
-                                        @include('admin.pages.employee.draft.crud.education.crud.fragments._add')
+                                        @include('admin.pages.data-library.dgree.crud.fragments._add')
                                     </div>
                                 </div>
                             @else
                                 <div id="editPage" class="pages">
                                     <div class="card rounded-0 pb-3">
                                         <div id="loadEdit" class="w-100">
-                                            @include('admin.pages.employee.draft.crud.education.crud.fragments._edit')
+                                            @include('admin.pages.data-library.dgree.crud.fragments._edit')
                                         </div>
                                     </div>
                                 </div>

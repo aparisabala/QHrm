@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-md-12">
             @can('employee_form_update_view')
-                @if($data['item'] != null)
+                @if($data['employee'] != null)
                     <div class="">
                         @include('admin.pages.employee.draft.crud.update-basic.form.update.fragments._breadcum')
                         <div id="pageSideBar" class="pageSideBar">

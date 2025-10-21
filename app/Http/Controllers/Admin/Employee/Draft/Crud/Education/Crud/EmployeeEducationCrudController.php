@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Employee\Draft\Crud\Education\Crud\ValidateStoreEmployeeEducation;
 use App\Models\Employee;
 use App\Models\LibBoard;
+use App\Models\LibDgree;
 use App\Repositories\Admin\Employee\Draft\Crud\Education\Crud\IEmployeeEducationCrudRepository;
 use App\Traits\BaseTrait;
 use Illuminate\Contracts\View\View;
@@ -20,7 +21,7 @@ class EmployeeEducationCrudController  extends Controller {
             $request->merge(['lang' => $this->lang]);
             return $next($request);
         });
-        $this->dgrees = [];
+        $this->dgrees = LibDgree::select(['id','name'])->get();
         $this->boards = LibBoard::select(['id','name'])->get();
 
     }
@@ -74,7 +75,7 @@ class EmployeeEducationCrudController  extends Controller {
     {
         $data = $this->iEmployeeEducationCrudRepo->index($request,$id);
         $data['lang'] = $this->lang;
-        $data['employee'] = Employee::where([['uuid','=',$request->uuid]])->first();
+        $data['employee'] = Employee::where([['id','=',$data['item']?->employee_id]])->first();
         $data['boards'] = $this->boards;
         $data['dgrees'] = $this->dgrees;
         return view('admin.pages.employee.draft.crud.education.crud.index', compact('data'));
