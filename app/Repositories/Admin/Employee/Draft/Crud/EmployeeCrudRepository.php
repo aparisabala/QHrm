@@ -23,6 +23,7 @@ class  EmployeeCrudRepository extends BaseRepository implements IEmployeeCrudRep
             ['width'=> 400, 'height'=> 400,'com'=> 70],
             ['width'=> 80, 'height'=> 80,'com'=> 10],
         ];
+        $this->baseQuery = [['status','=','Draft']];
     }
 
     /**
@@ -34,7 +35,7 @@ class  EmployeeCrudRepository extends BaseRepository implements IEmployeeCrudRep
      */
     public function index($request,$id=null) : array
     {
-       return $this->getPageDefault(model: $this->Employee, id: $id);
+       return $this->getPageDefault(model: $this->Employee, id: $id,where: $this->baseQuery);
     }
 
 
@@ -46,7 +47,7 @@ class  EmployeeCrudRepository extends BaseRepository implements IEmployeeCrudRep
      */
     public function list($request) : JsonResponse
     {
-        $model = Employee::orderBy('id','DESC')->with(['depertment','designation']);
+        $model = Employee::orderBy('id','DESC')->where([['status','=','Draft']])->with(['depertment','designation']);
         $this->saveTractAction(
             $this->getTrackData(
                 title: 'Employee was viewed by '.$request?->auth?->name.' at '.Carbon::now()->format('d M Y H:i:s A'),
