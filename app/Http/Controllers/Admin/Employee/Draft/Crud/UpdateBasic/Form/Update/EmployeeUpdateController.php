@@ -14,7 +14,7 @@ class EmployeeUpdateController extends Controller {
     use BaseTrait;
     public function __construct(private IEmployeeUpdateRepository $iEmployeeUpdateRepo) {
         $this->middleware(['auth:admin','HasAdminUserPassword','HasAdminUserAuth']);
-        $this->lang= 'admin.employee.draft.crud.update-basic.form.update.form.update';
+        $this->lang= 'admin.employee.draft.crud.update-basic.form.update';
         $this->middleware(function ($request, $next) {
             $request->merge(['lang' => $this->lang]);
             return $next($request);

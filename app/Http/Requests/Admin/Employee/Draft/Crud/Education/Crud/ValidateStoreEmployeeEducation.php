@@ -37,7 +37,7 @@ class ValidateStoreEmployeeEducation extends FormRequest
                 'string',
                 'max:100',
                 Rule::unique('employee_educations')->where(function ($query) use ($request) {
-                    return $query->where('employee_id', $request->employee_id);
+                    return $query->where('employee_id', $request->employee_id)->where('dgree_name',$request->dgree_name);
                 }),
             ],
             'board' => 'required|string|max:100',

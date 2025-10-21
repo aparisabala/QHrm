@@ -11,8 +11,7 @@ return [
         'b3' => 'Education'
     ],
     'nav' => [
-        'item1' => 'Basic Info',
-        'item2' => 'Education'
+        ...require resource_path('lang/en/admin/employee/draft/crud/nav/index.php')
     ],
     'fields' => [
         'serial' => 'Serial',

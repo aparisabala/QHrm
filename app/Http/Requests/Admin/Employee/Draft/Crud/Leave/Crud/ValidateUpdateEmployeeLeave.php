@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Admin\Employee\Draft\Crud\Education\Crud;
+namespace App\Http\Requests\Admin\Employee\Draft\Crud\Leave\Crud;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\ValidationException;
-use Illuminate\Validation\Rule;
-class ValidateUpdateEmployeeEducation extends FormRequest
+class ValidateUpdateEmployeeLeave extends FormRequest
 {
    /**
      * Determine if the user is authorized to make this request.
@@ -31,17 +30,15 @@ class ValidateUpdateEmployeeEducation extends FormRequest
     {
         $rules =  [
             'employee_id' => 'required|exists:employees,id',
-            'board' => 'required|string|max:100',
-            'passing_year' => 'required|digits:4',
-            'result' => 'required|string|max:50',
+            'lib_leave_id' => 'required|exists:lib_leaves,id',
+            'count' => 'required|numeric|min:1',
         ];
-        if($row->isDirty('dgree_name')) {
-            $rules['dgree_name'] =  [
+        if($row->isDirty('lib_leave_id')) {
+            $rules['lib_leave_id'] = [
                 'required',
-                'string',
-                'max:100',
-                Rule::unique('employee_educations')->where(function ($query) use ($request) {
-                    return $query->where('employee_id', $request->employee_id)->where('dgree_name',$request->dgree_name);
+                'exists:lib_leaves,id',
+                Rule::unique('employee_leaves')->where(function ($query) use ($request) {
+                    return $query->where('employee_id', $request->employee_id)->where('lib_leave_id',$request->lib_leave_id);
                 }),
             ];
         }

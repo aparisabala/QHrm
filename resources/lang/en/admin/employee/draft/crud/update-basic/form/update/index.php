@@ -5,14 +5,13 @@ return [
     'add' => '',
     'update' => '',
     'breadCum' => [
-        'title' => 'Update Basic Info ',
+        'title' => 'Update Employee ',
         'b1' => 'Employee',
         'b2' => 'Manage',
         'b3' => 'Update'
     ],
     'nav' => [
-        'item1' => 'Basic Info',
-        'item2' => 'Education'
+        ...require resource_path('lang/en/admin/employee/draft/crud/nav/index.php')
     ],
     'fields' => [
         'father_name' => 'Father Name',

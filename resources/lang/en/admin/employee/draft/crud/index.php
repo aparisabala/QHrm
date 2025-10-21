@@ -6,8 +6,8 @@ return [
     'update' => 'Update Employee',
     'breadCum' => [
         'title' => 'Employees',
-        'b1' => 'Data Library',
-        'b2' => 'Employees',
+        'b1' => 'Employee',
+        'b2' => 'List',
         'b3' => 'Manage'
     ],
     'nav' => [

@@ -6,6 +6,8 @@ use App\Repositories\BaseRepository;
 use App\Repositories\IBaseRepository;
 use Illuminate\Support\ServiceProvider;
 //vpx_imports
+use App\Repositories\Admin\Employee\Draft\Crud\Leave\Crud\IEmployeeLeaveCrudRepository;
+use App\Repositories\Admin\Employee\Draft\Crud\Leave\Crud\EmployeeLeaveCrudRepository;
 use App\Repositories\Admin\DataLibrary\Dgree\Crud\ILibDgreeCrudRepository;
 use App\Repositories\Admin\DataLibrary\Dgree\Crud\LibDgreeCrudRepository;
 use App\Repositories\Admin\DataLibrary\Board\Crud\ILibBoardCrudRepository;
@@ -39,6 +41,7 @@ class RepositoryServiceProvider extends ServiceProvider
         {
             $this->app->bind(abstract: IBaseRepository::class, concrete: BaseRepository::class);
             //vpx_attach
+            $this->app->bind(abstract: IEmployeeLeaveCrudRepository::class, concrete: EmployeeLeaveCrudRepository::class);
             $this->app->bind(abstract: ILibDgreeCrudRepository::class, concrete: LibDgreeCrudRepository::class);
             $this->app->bind(abstract: ILibBoardCrudRepository::class, concrete: LibBoardCrudRepository::class);
             $this->app->bind(abstract: IEmployeeEducationCrudRepository::class, concrete: EmployeeEducationCrudRepository::class);
