@@ -18,6 +18,21 @@ class Employee extends Model
 
      public function designation()
     {
-        return $this->hasOne(LibDepartment::class,'id','lib_designation_id');
+        return $this->hasOne(LibDesignation::class,'id','lib_designation_id');
+    }
+
+    public function education()
+    {
+        return $this->hasMany(EmployeeEducation::class,'employee_id','id');
+    }
+
+    public function leaves()
+    {
+        return $this->hasMany(EmployeeLeave::class,'employee_id','id');
+    }
+
+    public function salary()
+    {
+        return $this->hasOne(EmployeeSalary::class,'employee_id','id');
     }
 }

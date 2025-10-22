@@ -10,7 +10,7 @@ trait EmployeePolicyTrait {
             'policies' => [
                 [
                     'name' => 'Employee Crud',
-                    'keys' => ['view','store','bulk_update','delete','pdf','excel','edit']
+                    'keys' => ['view','store','bulk_update','delete','pdf','excel','edit','employee_view','employee_edit']
                 ],
                 [
                     'name' => 'Employee Form Update',
@@ -31,6 +31,10 @@ trait EmployeePolicyTrait {
                 [
                     'name' => 'Employee Salary Salary Setup Update',
                     'keys' => ['view','update']
+                ],
+                [
+                    'name' => 'Employee Detail Modal',
+                    'keys' => ['view','view_detail','print_detail','view_appointment','pdf_appointment','view_confirm','pdf_confrim']
                 ],
             ]
         ];

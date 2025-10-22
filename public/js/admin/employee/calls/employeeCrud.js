@@ -70,8 +70,17 @@ $(document).ready(function(){
     }
 
     if ($("#dtEmployee").length > 0) {
-        const {pageLang={}} = PX?.config;
+        const {pageLang={},policy={}} = PX?.config;
         const {table={}} = pageLang;
+        let trigDetails = {
+            body: {},
+            modalCallback: 'viewEmployeeModal',
+            element: 'viewEmployeeModal',
+            script: 'admin/employee/draft/crud/view-draft-employee/display',
+            title: 'Employee Details',
+            globLoader: false
+        };
+        console.log(policy);
         let col_draft = [
             {
                 data: 'id',
@@ -115,13 +124,28 @@ $(document).ready(function(){
                 title: table?.action,
                 class: 'text-end',
                 render: function (data, type, row) {
-                    return `
-                    <a href="${baseurl}admin/employee/draft/crud/update-basic/update/${data.uuid}" class="btn btn-outline-info btn-sm edit" title="Setup">
-                        <i class="fas fa-cog"></i>
-                    </a>
-                    <a href="${baseurl}admin/employee/draft/${data.id}/edit" class="ms-2 btn btn-outline-secondary btn-sm edit" title="Edit">
-                        <i class="fas fa-pencil-alt"></i>
-                    </a>`;
+                    trigDetails = {
+                        ...trigDetails,
+                        body: {id: data?.id},
+                        title: `Details of ${data?.name}`
+                    };
+                    let str = ``;
+                    if(policy?.employee_crud_employee_view) {
+                        str += `<span  data-bs-toggle='modal' data-bs-target='.editmodal' data-edit-prop='${JSON.stringify(trigDetails)}' class="btn btn-outline-success btn-sm edit" title="View Details">
+                            <i class="fas fa-eye"></i>
+                        </span>`;
+                    }
+                    if(policy?.employee_crud_employee_edit) {
+                        str += `<a href="${baseurl}admin/employee/draft/crud/update-basic/update/${data.uuid}" class="ms-2 btn btn-outline-info btn-sm edit" title="Setup">
+                            <i class="fas fa-cog"></i>
+                        </a>`;
+                    }
+                    if(policy?.employee_crud_edit) {
+                        str += `<a href="${baseurl}admin/employee/draft/${data.id}/edit" class="ms-2 btn btn-outline-secondary btn-sm edit" title="Edit">
+                            <i class="fas fa-pencil-alt"></i>
+                        </a>`;
+                    }
+                    return str;
                 }
             },
         ];

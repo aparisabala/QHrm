@@ -13,4 +13,9 @@ class EmployeeSalary extends Model
         'lib_salary_group_id'
     ];
     //vpx_attach
+
+    public function salaryGroup()
+    {
+        return $this->hasOne(LibSalaryGroup::class,'id','lib_salary_group_id');
+    }
 }
