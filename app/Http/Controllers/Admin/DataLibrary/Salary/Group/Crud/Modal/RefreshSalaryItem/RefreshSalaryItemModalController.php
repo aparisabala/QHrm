@@ -56,7 +56,7 @@ class RefreshSalaryItemModalController extends Controller {
      * @param Request $request
      * @return JsonResponse
      */
-    public function bulkUpdate(Request $request) : JsonResponse
+    public function bulkUpdate(ValidateRefreshLibSalaryGroup  $request) : JsonResponse
     {
         return $this->iRefreshSalaryItemRepo->bulkUpdate($request);
     }

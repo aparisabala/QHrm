@@ -18,7 +18,6 @@
                                             @foreach ($data['dgrees'] as $item)
                                                 <option value="{{$item?->name}}"> {{$item?->name}} </option>
                                             @endforeach
-                                            <option value="Actions"> Test Actions </option>
                                         </select>
                                     </div>
                                 </div>
@@ -30,7 +29,6 @@
                                             @foreach ($data['boards'] as $item)
                                                 <option value="{{$item?->name}}"> {{$item?->name}} </option>
                                             @endforeach
-                                            <option value="Board"> Test Board </option>
                                         </select>
                                     </div>
                                 </div>

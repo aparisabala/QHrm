@@ -7,7 +7,7 @@ use App\Models\LibSalaryGroupItem;
 use App\Models\LibSalaryHead;
 use App\Repositories\BaseRepository;
 use Illuminate\Http\JsonResponse;
-
+use DB;
 class RefreshSalaryItemRepository extends BaseRepository implements IRefreshSalaryItemRepository
 {
 
@@ -112,11 +112,11 @@ class RefreshSalaryItemRepository extends BaseRepository implements IRefreshSala
      */
     public function delete($request) : JsonResponse
     {
-        $parent = LibSalaryGroup::where([['id','=',$request->id]])->first();
+        $parent = LibSalaryGroup::where([['id','=',$request->lib_salary_group_id]])->first();
         if(empty($parent)){
             return $this->response(['type'=>'noUpdate','title'=> pxLang($request->lang,'text.no_salary_found')]);
         }
-        $total = LibSalaryGroupItem::where([['lib_salary_id','=',$parent?->id]])->count();
+        $total = LibSalaryGroupItem::where([['id','=',$parent?->id]])->count();
         if($total <= 1) {
             return $this->response(['type'=>'noUpdate','title'=>pxLang($request->lang,'text.must_have_item')]);
         }

@@ -46,7 +46,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group text-left mb-3">
-                                                                <label class="form-label"> <b>{{pxLang($data['lang'],'fields.branch')}}</b> <em class="required">*</em> <span id="ac_name_error"></span></label>
+                                                                <label class="form-label"> <b>{{pxLang($data['lang'],'fields.ac_name')}}</b> <em class="required">*</em> <span id="ac_name_error"></span></label>
                                                                 <div class="input-group">
                                                                     <input type="text" class="form-control" name="ac_name" id="ac_name" value="{{$data['employee']?->ac_name}}">
                                                                 </div>

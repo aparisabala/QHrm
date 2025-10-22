@@ -3,7 +3,7 @@
         @if($data['item'] != null)
         <div class="mb-3 p-2">
             <form id="frmRefreshSalaryItems" autocomplete="off">
-                <input type="hidden"  value="{{$data['item']->uuid}}" name="uuid"/>
+                <input type="hidden"  value="{{$data['item']->id}}" name="id"/>
                 <fieldset class="fieldset">
                     <legend class="legend"> {{pxLang($data['lang'],'text.modal_title')}} </legend>
                     <div class="mt-4">
@@ -67,7 +67,7 @@
             <fieldset class="fieldset">
                 <legend class="legend"> {{pxLang($data['lang'],'text.available')}} </legend>
                 <form id="frmUpdateSalaryAmount" autocomplete="off">
-                    <input type="hidden"  value="{{$data['item']->uuid}}" name="uuid"/>
+                    <input type="hidden"  value="{{$data['item']->id}}" name="id"/>
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
@@ -84,9 +84,7 @@
                                     <th>
                                         {{pxLang($data['lang'],'table.amount')}}
                                     </th>
-                                    <th>
-
-                                    </th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -102,6 +100,7 @@
                                                 <option {{($item?->type == "addition") ? 'selected' : ''}} value="addition"> Addition </option>
                                                 <option {{($item?->type == "deduction") ? 'selected' : ''}}  value="deduction"> Deduction </option>
                                             </select>
+                                            <span id="type.{{$item?->id}}_error"></span>
                                         </td>
                                         <td>
                                            <select  class="form-control"  name="description[{{$item->id}}]">
@@ -110,12 +109,14 @@
                                                     <option {{($item?->description == $salary?->name) ? 'selected':''}} value="{{$salary?->name}}">{{$salary?->name}}</option>
                                                 @endforeach
                                             </select>
+                                            <span id="description.{{$item?->id}}_error"></span>
                                         </td>
                                         <td>
                                             <input  class="form-control"  type="number" value="{{$item?->amount}}" name="amount[{{$item->id}}]"/>
+                                            <span id="amount.{{$item?->id}}_error"></span>
                                         </td>
-                                        <td>
-                                            <span data-prop='{"id": "{{$item?->id}}","uuid":"{{$data['item']?->uuid}}"}' class="badge badge-pill bg-danger p-2 cursor-pointer deleteSalaryItems"><i  class="fa fa-trash"></i></span>
+                                        <td class="text-end">
+                                            <span data-prop='{"id":"{{$item?->id}}","lib_salary_group_id": "{{$item?->lib_salary_group_id}}"}' class="badge badge-pill bg-danger p-2 cursor-pointer deleteSalaryItems"><i  class="fa fa-trash"></i></span>
                                         </td>
                                     </tr>
                                 @endforeach
