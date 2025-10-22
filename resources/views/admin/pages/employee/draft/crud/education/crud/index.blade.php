@@ -7,21 +7,21 @@
                     <div class="">
                         @include('admin.pages.employee.draft.crud.education.crud.fragments._breadcum')
                         <div id="pageSideBar" class="pageSideBar">
-                        <a href="javascript:void(0)" class="closebtn closeNav">×</a>
-                        @include('admin.pages.employee.draft.crud.navs.nav')
-                    </div>
+                            <a href="javascript:void(0)" class="closebtn closeNav">×</a>
+                            @include('admin.pages.employee.draft.crud.navs.nav')
+                        </div>
                         <div class="page-block-body">
                             @if($data['type'] == "add")
                                 @include('admin.pages.employee.draft.crud.education.crud.fragments._actions')
                                 <div class="card rounded page-block">
                                     <div class="d-none d-md-block mb-4">
-                                    @include('admin.pages.employee.draft.crud.navs.nav')
-                                </div>
-                                <div class="d-block d-md-none">
-                                    <div class="d-flex flex-row justify-content-end align-items-center p-2">
-                                        <span class="fs-18 openNav" style="cursor:pointer">&#9776;</span>
+                                        @include('admin.pages.employee.draft.crud.navs.nav')
                                     </div>
-                                </div>
+                                    <div class="d-block d-md-none">
+                                        <div class="d-flex flex-row justify-content-end align-items-center p-2">
+                                            <span class="fs-18 openNav" style="cursor:pointer">&#9776;</span>
+                                        </div>
+                                    </div>
                                     <div id="defaultPage" class="table-list pages">
                                         <div class="mt-2 p-2 p-md-4">
                                             <input type="hidden" id="page-lang" value="{{ json_encode(Lang::get(config('pxcommands.language')[$data['lang']])) }}" />

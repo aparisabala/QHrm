@@ -15,4 +15,9 @@ class LibSalaryGroup extends Model
         //'serial'
     ];
     //vpx_attach
+
+    public function salaryItems()
+    {
+        return $this->hasMany(LibSalaryGroupItem::class,'lib_salary_group_id','id');
+    }
 }

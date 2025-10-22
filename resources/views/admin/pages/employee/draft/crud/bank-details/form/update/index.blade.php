@@ -4,21 +4,21 @@
         <div class="col-md-12">
             @can('employee_bank_details_update_view')
                 @if($data['employee'] != null)
-                    <div class="">
-                        @include('admin.pages.employee.draft.crud.bank-details.form.update.fragments._breadcum')
-                        <div id="pageSideBar" class="pageSideBar">
-                        <a href="javascript:void(0)" class="closebtn closeNav">×</a>
-                        @include('admin.pages.employee.draft.crud.navs.nav')
-                    </div>
+                        <div class="">
+                            @include('admin.pages.employee.draft.crud.bank-details.form.update.fragments._breadcum')
+                            <div id="pageSideBar" class="pageSideBar">
+                            <a href="javascript:void(0)" class="closebtn closeNav">×</a>
+                            @include('admin.pages.employee.draft.crud.navs.nav')
+                        </div>
                         <div class="card rounded page-block">
                             <div class="d-none d-md-block mb-4">
-                                    @include('admin.pages.employee.draft.crud.navs.nav')
+                                @include('admin.pages.employee.draft.crud.navs.nav')
+                            </div>
+                            <div class="d-block d-md-none">
+                                <div class="d-flex flex-row justify-content-end align-items-center p-2">
+                                    <span class="fs-18 openNav" style="cursor:pointer">&#9776;</span>
                                 </div>
-                                <div class="d-block d-md-none">
-                                    <div class="d-flex flex-row justify-content-end align-items-center p-2">
-                                        <span class="fs-18 openNav" style="cursor:pointer">&#9776;</span>
-                                    </div>
-                                </div>
+                            </div>
                             <div class="mt-4 p-3">
                                 @can('employee_bank_details_update_update')
                                     <form id="frmEmployeeBankDetailsUpdate" autocomplete="off">

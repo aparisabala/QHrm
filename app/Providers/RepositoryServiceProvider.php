@@ -6,6 +6,8 @@ use App\Repositories\BaseRepository;
 use App\Repositories\IBaseRepository;
 use Illuminate\Support\ServiceProvider;
 //vpx_imports
+use App\Repositories\Admin\Employee\Draft\Crud\SalarySetup\Form\Update\IEmployeeSalarySalarySetupUpdateRepository;
+use App\Repositories\Admin\Employee\Draft\Crud\SalarySetup\Form\Update\EmployeeSalarySalarySetupUpdateRepository;
 use App\Repositories\Admin\DataLibrary\Salary\Group\Crud\Modal\RefreshSalaryItem\IRefreshSalaryItemRepository;
 use App\Repositories\Admin\DataLibrary\Salary\Group\Crud\Modal\RefreshSalaryItem\RefreshSalaryItemRepository;
 use App\Repositories\Admin\DataLibrary\Salary\Group\Crud\ILibSalaryGroupCrudRepository;
@@ -49,6 +51,7 @@ class RepositoryServiceProvider extends ServiceProvider
         {
             $this->app->bind(abstract: IBaseRepository::class, concrete: BaseRepository::class);
             //vpx_attach
+            $this->app->bind(abstract: IEmployeeSalarySalarySetupUpdateRepository::class, concrete: EmployeeSalarySalarySetupUpdateRepository::class);
             $this->app->bind(abstract: IRefreshSalaryItemRepository::class, concrete: RefreshSalaryItemRepository::class);
             $this->app->bind(abstract: ILibSalaryGroupCrudRepository::class, concrete: LibSalaryGroupCrudRepository::class);
             $this->app->bind(abstract: ILibBankCrudRepository::class, concrete: LibBankCrudRepository::class);

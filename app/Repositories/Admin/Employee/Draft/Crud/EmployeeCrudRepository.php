@@ -4,6 +4,7 @@ namespace App\Repositories\Admin\Employee\Draft\Crud;
 
 use App\Http\Requests\Admin\Employee\Draft\Crud\ValidateUpdateEmployee;
 use App\Models\Employee;
+use App\Models\EmployeeSalary;
 use App\Repositories\BaseRepository;
 use App\Traits\BaseTrait;
 use Carbon\Carbon;
@@ -103,6 +104,9 @@ class  EmployeeCrudRepository extends BaseRepository implements IEmployeeCrudRep
                 $m->extension = $extension;
             }
             $m->save();
+            $s = new EmployeeSalary;
+            $s->employee_id = $m->id;
+            $s->save();
             $response['extraData'] = ['inflate' => pxLang($request->lang,'','common.action_success') ];
             $this->saveTractAction($this->getTrackData(title: "Employee was created by ".$request?->auth?->name,request: $request));
             DB::commit();

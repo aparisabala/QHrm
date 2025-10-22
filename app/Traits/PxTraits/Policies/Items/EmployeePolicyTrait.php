@@ -27,7 +27,11 @@ trait EmployeePolicyTrait {
                 [
                     'name' => 'Employee Leave Crud',
                     'keys' => ['view','store','bulk_update','delete','pdf','excel','edit']
-                ]
+                ],
+                [
+                    'name' => 'Employee Salary Salary Setup Update',
+                    'keys' => ['view','update']
+                ],
             ]
         ];
     }
