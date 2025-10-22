@@ -63,7 +63,7 @@ class  LibBoardCrudRepository extends BaseRepository implements ILibBoardCrudRep
      * @return JsonResponse
      */
     public function store($request) : JsonResponse
-    {   
+    {
         DB::beginTransaction();
         try {
             LibBoard::create([
@@ -109,6 +109,7 @@ class  LibBoardCrudRepository extends BaseRepository implements ILibBoardCrudRep
                 DB::commit();
                 return $this->response(['type' => 'success','data' => $data]);
             } catch (\Exception $e) {
+                DB::rollback();
                 $this->saveError($this->getSystemError(['name'=>'LibBoard_update_error']), $e);
                 return $this->response(["type"=>"wrong","lang"=>"server_wrong"]);
             }

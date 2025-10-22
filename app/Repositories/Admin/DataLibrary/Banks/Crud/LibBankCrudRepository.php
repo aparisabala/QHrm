@@ -63,7 +63,7 @@ class  LibBankCrudRepository extends BaseRepository implements ILibBankCrudRepos
      * @return JsonResponse
      */
     public function store($request) : JsonResponse
-    {   
+    {
         DB::beginTransaction();
         try {
             LibBank::create([
@@ -109,6 +109,7 @@ class  LibBankCrudRepository extends BaseRepository implements ILibBankCrudRepos
                 DB::commit();
                 return $this->response(['type' => 'success','data' => $data]);
             } catch (\Exception $e) {
+                DB::rollback();
                 $this->saveError($this->getSystemError(['name'=>'LibBank_update_error']), $e);
                 return $this->response(["type"=>"wrong","lang"=>"server_wrong"]);
             }

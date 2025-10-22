@@ -42,6 +42,7 @@ return new class extends Migration
             $table->string('branch')->nullable();
             $table->string('ac_name')->nullable();
             $table->string('ac_number')->nullable();
+            $table->date('joining_date')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

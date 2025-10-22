@@ -73,7 +73,7 @@ class  EmployeeUpdateRepository extends BaseRepository implements IEmployeeUpdat
                 DB::commit();
                 return $this->response(['type' => 'success','data' => $data]);
             } catch (\Exception $e) {
-                print_r($e->getMessage());
+                DB::rollback();
                 $this->saveError($this->getSystemError(['name'=>'Employee_update_error']), $e);
                 return $this->response(["type"=>"wrong","lang"=>"server_wrong"]);
             }

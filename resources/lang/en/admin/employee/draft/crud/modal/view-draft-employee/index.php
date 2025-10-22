@@ -20,7 +20,7 @@ return [
                 'personal' => [
                     'name'=> 'Personal Info',
                     'fileds' => [
-                        'image' => 'Iaage',
+                        'image' => 'Employee Photo',
                         'name' => 'Name',
                         'email' => 'Email',
                         'lib_department_id' => 'Department',
@@ -81,7 +81,14 @@ return [
             ]
         ],
         'confirm' => [
-            'tab' => 'Confirm Applicant'
+            'tab' => 'Confirm Applicant',
+            'fileds' => [
+                'employee_id'=> 'Employee ID',
+                'joining_date' => 'Joining Date'
+            ],
+            'btn' => [
+                'employee_entry' => 'Entry Employee'
+            ]
         ]
     ],
     'fields' => [

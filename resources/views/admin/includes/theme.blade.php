@@ -67,9 +67,6 @@ table.dataTable th,
 table.dataTable td {
     border: none !important;
 }
-.cursor-pointer {
-   cursor: pointer;
-}
 
 table.dataTable {
     width: 100%;
@@ -130,6 +127,13 @@ table.dataTable.no-footer {
 }
 .noti-icon  {
     margin-top: 7px;
+}
+.form-control[readonly],.form-control[disabled] {
+    background-color: #e9ecef !important;
+    opacity: 1;
+}
+.cursor-pointer {
+   cursor: pointer;
 }
 
 </style>

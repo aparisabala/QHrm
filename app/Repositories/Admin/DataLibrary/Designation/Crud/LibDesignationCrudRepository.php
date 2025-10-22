@@ -63,7 +63,7 @@ class  LibDesignationCrudRepository extends BaseRepository implements ILibDesign
      * @return JsonResponse
      */
     public function store($request) : JsonResponse
-    {   
+    {
         DB::beginTransaction();
         try {
             LibDesignation::create([
@@ -109,6 +109,7 @@ class  LibDesignationCrudRepository extends BaseRepository implements ILibDesign
                 DB::commit();
                 return $this->response(['type' => 'success','data' => $data]);
             } catch (\Exception $e) {
+                DB::rollback();
                 $this->saveError($this->getSystemError(['name'=>'LibDesignation_update_error']), $e);
                 return $this->response(["type"=>"wrong","lang"=>"server_wrong"]);
             }

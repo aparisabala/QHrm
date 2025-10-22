@@ -65,6 +65,7 @@ class  EmployeeSalarySalarySetupUpdateRepository extends BaseRepository implemen
                 DB::commit();
                 return $this->response(['type' => 'success','data' => $data]);
             } catch (\Exception $e) {
+                DB::rollback();
                 $this->saveError($this->getSystemError(['name'=>'EmployeeSalary_update_error']), $e);
                 return $this->response(["type"=>"wrong","lang"=>"server_wrong"]);
             }

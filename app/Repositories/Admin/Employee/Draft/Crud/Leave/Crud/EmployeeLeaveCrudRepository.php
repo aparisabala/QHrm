@@ -109,6 +109,7 @@ class  EmployeeLeaveCrudRepository extends BaseRepository implements IEmployeeLe
                 DB::commit();
                 return $this->response(['type' => 'success','data' => $data]);
             } catch (\Exception $e) {
+                DB::rollback();
                 $this->saveError($this->getSystemError(['name'=>'EmployeeLeave_update_error']), $e);
                 return $this->response(["type"=>"wrong","lang"=>"server_wrong"]);
             }

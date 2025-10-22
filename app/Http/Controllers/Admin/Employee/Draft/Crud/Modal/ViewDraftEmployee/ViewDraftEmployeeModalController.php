@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Admin\Employee\Draft\Crud\Modal\ViewDraftEmployee;
 use App\Http\Controllers\Controller;
+use App\Models\Employee;
 use App\Traits\BaseTrait;
 use Illuminate\Http\JsonResponse;
 use View;
 use Illuminate\Http\Request;
 use App\Repositories\Admin\Employee\Draft\Crud\Modal\ViewDraftEmployee\IViewDraftEmployeeRepository;
+use Illuminate\Support\Facades\Validator;
+use Response;
 //vpx_imports
 
 class ViewDraftEmployeeModalController extends Controller {
@@ -37,5 +40,21 @@ class ViewDraftEmployeeModalController extends Controller {
         return $this->response(['type' => 'success', 'data' => $response]);
     }
     //vpx_attach
+
+    public function entry(Request $request)
+    {
+        $messages = [
+        ];
+        $rules = ['joining_date' => 'required|date_format:Y-m-d'];
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if($validator->fails()) {
+            return Response::json(
+            array(
+                'success' => false,
+                'errors'  => $validator->getMessageBag()->toArray(),
+            ));
+        }
+        return $this->iViewDraftEmployeeRepo->entry($request);
+    }
 
 }
