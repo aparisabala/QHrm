@@ -6,6 +6,8 @@ use App\Repositories\BaseRepository;
 use App\Repositories\IBaseRepository;
 use Illuminate\Support\ServiceProvider;
 //vpx_imports
+use App\Repositories\Admin\Employee\Active\Dt\ActiveEmployee\IActiveEmployeeDtRepository;
+use App\Repositories\Admin\Employee\Active\Dt\ActiveEmployee\ActiveEmployeeDtRepository;
 use App\Repositories\Admin\Employee\Draft\Crud\Modal\ViewDraftEmployee\IViewDraftEmployeeRepository;
 use App\Repositories\Admin\Employee\Draft\Crud\Modal\ViewDraftEmployee\ViewDraftEmployeeRepository;
 use App\Repositories\Admin\Employee\Draft\Crud\SalarySetup\Form\Update\IEmployeeSalarySalarySetupUpdateRepository;
@@ -53,6 +55,7 @@ class RepositoryServiceProvider extends ServiceProvider
         {
             $this->app->bind(abstract: IBaseRepository::class, concrete: BaseRepository::class);
             //vpx_attach
+            $this->app->bind(abstract: IActiveEmployeeDtRepository::class, concrete: ActiveEmployeeDtRepository::class);
             $this->app->bind(abstract: IViewDraftEmployeeRepository::class, concrete: ViewDraftEmployeeRepository::class);
             $this->app->bind(abstract: IEmployeeSalarySalarySetupUpdateRepository::class, concrete: EmployeeSalarySalarySetupUpdateRepository::class);
             $this->app->bind(abstract: IRefreshSalaryItemRepository::class, concrete: RefreshSalaryItemRepository::class);

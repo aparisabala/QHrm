@@ -36,6 +36,10 @@ trait EmployeePolicyTrait {
                     'name' => 'Employee Detail Modal',
                     'keys' => ['view','view_detail','print_detail','view_appointment','pdf_appointment','view_confirm','pdf_confrim']
                 ],
+                [
+                    'name' => 'Active Employee Dt',
+                    'keys' => ['view']
+                ],
             ]
         ];
     }

@@ -39,7 +39,7 @@
                             <a href="{{url('admin/employee/draft')}}">{{pxLang('admin.main-nav','employee.menu.draft')}}</a>
                         </li>
                         <li>
-                            <a href="#">{{pxLang('admin.main-nav','employee.menu.active')}}</a>
+                            <a href="{{url('admin/employee/active/active-employee/list')}}">{{pxLang('admin.main-nav','employee.menu.active')}}</a>
                         </li>
                     </ul>
                 </li>

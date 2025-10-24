@@ -102,6 +102,7 @@ return [
         'admin.data-library.salary.group.crud' => 'admin/data-library/salary/group/crud/index',
         'admin.data-library.salary.group.crud.modal.refresh-salary-item' => 'admin/data-library/salary/group/crud/modal/refresh-salary-item/index',
         'admin.employee.draft.crud.salary-setup.form.update' => 'admin/employee/draft/crud/salary-setup/form/update/index',
-        'admin.employee.draft.crud.modal.view-draft-employee' => 'admin/employee/draft/crud/modal/view-draft-employee/index'
+        'admin.employee.draft.crud.modal.view-draft-employee' => 'admin/employee/draft/crud/modal/view-draft-employee/index',
+        'admin.employee.active.crud' => 'admin/employee/active/crud/index'
     ]
 ];
