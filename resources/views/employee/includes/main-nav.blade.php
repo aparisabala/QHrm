@@ -29,23 +29,20 @@
                         <span>{{pxLang('employee.main-nav','dashboard')}}</span>
                     </a>
                 </li>
-                {{--<li>
+                <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="bx bxs-cog"></i>
-                        <span>{{pxLang('employee.main-nav','system.core')}}</span>
+                        <span>{{pxLang('employee.main-nav','attendance.menu')}}</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="true">
                         <li>
-                            <a href="{{url('employee/system/user/role')}}">{{pxLang('employee.main-nav','system.core.user_role')}}</a>
+                            <a href="{{url('employee/atteandance/take')}}">{{pxLang('employee.main-nav','attendance.menu.entry')}}</a>
                         </li>
                         <li>
-                            <a href="{{url('employee/system/user')}}">{{pxLang('employee.main-nav','system.core.user')}}</a>
-                        </li>
-                        <li>
-                            <a href="{{url('employee/system/user/policy')}}">{{pxLang('employee.main-nav','system.core.user_policy')}}</a>
+                            <a href="{{url('employee/atteandance/my-attendance')}}">{{pxLang('employee.main-nav','attendance.menu.my_attendance')}}</a>
                         </li>
                     </ul>
-                </li>--}}
+                </li>
             </ul>
         </div>
     </div>

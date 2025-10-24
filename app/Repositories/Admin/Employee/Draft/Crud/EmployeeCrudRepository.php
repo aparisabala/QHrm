@@ -89,6 +89,7 @@ class  EmployeeCrudRepository extends BaseRepository implements IEmployeeCrudRep
             $m->lib_department_id = $request->lib_department_id;
             $m->lib_designation_id = $request->lib_designation_id;
             $m->email = $request->email;
+            $m->user_access = ["SA"];
             $m->password = Hash::make('123456789');
             $path = imagePaths()['dyn_image'];
             $image = $request->file('image');
