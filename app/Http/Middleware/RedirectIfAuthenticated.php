@@ -20,6 +20,11 @@ class RedirectIfAuthenticated
             if (Auth::guard($guard)->check()) {
                 switch ($guard) {
                     //vpx_guard_redirections
+        case 'employee':
+    if (Auth::guard($guard)->check()) {
+        return redirect()->route('employee.dashboard.index');
+    }
+break;
         case 'admin':
     if (Auth::guard($guard)->check()) {
         return redirect()->route('admin.dashboard.index');

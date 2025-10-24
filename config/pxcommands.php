@@ -50,6 +50,51 @@ return [
                     'employee'
                 ]
             ]
+        ],
+        'employee' => [
+            'styles' => [
+                'cdns' => [
+                    'bootstrap5',
+                    'fontAwesome',
+                    'boxIcon',
+                    'jqConfirm',
+                    'datatable5'
+                ],
+                'local' => [
+                    'px',
+                    'panel/employee',
+                    'panel/minible'
+                ],
+                'conditional' => [
+
+                ]
+            ],
+            'scripts' => [
+                'cdns' => [
+                    'jq',
+                    'bootstrap5',
+                    'popper',
+                    'fontAwesome',
+                    'boxIcon',
+                    'jqConfirm',
+                    'datatable5',
+                    'dataTableSelectCheckbox',
+                    'pdfmake',
+                    'xlsx',
+                    'dateTimePicker'
+                ],
+                'local' => [
+                    'px',
+                    'panel/employee',
+                    'panel/minible'
+                ],
+                'conditional' => [
+                    'login',
+                    'dashboard',
+                    'setup',
+                    'reset'
+                ]
+            ]
         ]
     ],
     'styles' => [
@@ -103,6 +148,14 @@ return [
         'admin.data-library.salary.group.crud.modal.refresh-salary-item' => 'admin/data-library/salary/group/crud/modal/refresh-salary-item/index',
         'admin.employee.draft.crud.salary-setup.form.update' => 'admin/employee/draft/crud/salary-setup/form/update/index',
         'admin.employee.draft.crud.modal.view-draft-employee' => 'admin/employee/draft/crud/modal/view-draft-employee/index',
-        'admin.employee.active.crud' => 'admin/employee/active/crud/index'
+        'admin.employee.active.crud' => 'admin/employee/active/crud/index',
+        'employee.main-nav' => 'employee/layout/main-nav',
+        'employee.login' => 'employee/login/index',
+        'employee.reset' => 'employee/reset/index',
+        'employee.profile.setup' => 'employee/setup/index',
+        'employee.user.update' => 'employee/setup/user/index',
+        'employee.user.pass.update' => 'employee/setup/pass/index',
+        'employee.user.nav' => 'employee/setup/navs/index',
+        'employee.system.user' => 'employee/system/user/index'
     ]
 ];
